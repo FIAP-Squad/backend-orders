@@ -1,6 +1,7 @@
 import { type Payment } from './Payment'
 
 export type OrderItem = {
+  totalItems: number
   unitPrice: number
   amount: number
   orderId: string

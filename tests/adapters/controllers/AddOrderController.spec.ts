@@ -24,6 +24,7 @@ const morkOrder = (): Order => ({
   },
   items: [
     {
+      totalItems: 1,
       unitPrice: 2000,
       amount: 2000,
       orderId: 'any_orderId',
