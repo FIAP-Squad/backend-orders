@@ -6,7 +6,8 @@ import {
 import { AddOrderController } from '@/adapters/controllers'
 import {
   badRequest,
-  // serverError,
+  noContent,
+  serverError
   // noContent
 } from '@/adapters/helpers'
 
@@ -60,7 +61,7 @@ interface SutTypes {
 const mockSut = (): SutTypes => {
   const addOrderStub = makeAddOrder()
   const validationStub = mockValidation()
-  const sut = new AddOrderController(validationStub)
+  const sut = new AddOrderController(validationStub, addOrderStub)
   return {
     sut,
     validationStub,
@@ -85,25 +86,25 @@ describe('Add Order IController', () => {
     expect(response).toEqual(badRequest(new Error()))
   })
 
-  // test('Should call IAddOrder usign correct values', async () => {
-  //   const { sut, addOrderStub } = mockSut()
-  //   const addOrderSpy = jest.spyOn(addOrderStub, 'execute')
-  //   const request = mockRequest()
-  //   await sut.handle(request)
-  //   expect(addOrderSpy).toHaveBeenCalledWith(request.body)
-  // })
+  test('Should call IAddOrder usign correct values', async () => {
+    const { sut, addOrderStub } = mockSut()
+    const addOrderSpy = jest.spyOn(addOrderStub, 'execute')
+    const request = mockRequest()
+    await sut.handle(request)
+    expect(addOrderSpy).toHaveBeenCalledWith(request.body)
+  })
 
-  // test('Should return 500 if IAddOrder throws', async () => {
-  //   const { sut, addOrderStub } = mockSut()
-  //   jest.spyOn(addOrderStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
-  //   const response = await sut.handle(mockRequest())
-  //   expect(response).toEqual(serverError(new Error()))
-  // })
+  test('Should return 500 if IAddOrder throws', async () => {
+    const { sut, addOrderStub } = mockSut()
+    jest.spyOn(addOrderStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
+    const response = await sut.handle(mockRequest())
+    expect(response).toEqual(serverError(new Error()))
+  })
 
-  // test('Should return 204 on success', async () => {
-  //   const { sut, addOrderStub } = mockSut()
-  //   jest.spyOn(addOrderStub, 'execute')
-  //   const response = await sut.handle(mockRequest())
-  //   expect(response).toEqual(noContent())
-  // })
+  test('Should return 204 on success', async () => {
+    const { sut, addOrderStub } = mockSut()
+    jest.spyOn(addOrderStub, 'execute')
+    const response = await sut.handle(mockRequest())
+    expect(response).toEqual(noContent())
+  })
 })
