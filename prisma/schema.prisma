@@ -25,16 +25,6 @@ model account {
   role        String?
 }
 
-model order {
-  id        String      @id @default(uuid())
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now()) @updatedAt
-  number    Int?
-  customer  String
-  status    String
-  amount    Int
-}
-
 model payment {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -55,13 +45,24 @@ model product {
   image       String
 }
 
+model order {
+  id        String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now()) @updatedAt
+  customer  String
+  status    String
+  amount    Int
+  items     orderItem[]
+}
+
 model orderItem {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
   totalItems Int
   unitPrice  Int
   amount     Int
+  order      order  @relation(fields: [orderId], references: [id])
   orderId    String
   productId  String
 }
