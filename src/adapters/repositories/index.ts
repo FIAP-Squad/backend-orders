@@ -1,5 +1,4 @@
 export * from './LogRepository'
-export * from './OrderRepository'
 export * from './prismaClient'
 export * from './MongoHelper'
 export * from './PaymentRepository'

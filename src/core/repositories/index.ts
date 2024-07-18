@@ -1,7 +1,4 @@
-export * from './IAddOrderRepository'
-export * from './ILoadOrders'
 export * from './ILogErrorRepository'
-export * from './IUpdateOrderRepository'
 export * from './IAddPaymentRepository'
 export * from './IUpdatePaymentRepository'
 export * from './ILoadPaymentsRepository'
