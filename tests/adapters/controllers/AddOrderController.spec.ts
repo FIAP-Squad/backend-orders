@@ -17,6 +17,11 @@ const morkOrder = (): Order => ({
   customer: 'any_customer',
   status: 'any_status',
   amount: 2000,
+  payment: {
+    amount: 2000,
+    status: 'Pendding',
+    orderId: 'any_orderId'
+  },
   items: [
     {
       unitPrice: 2000,
