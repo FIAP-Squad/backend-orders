@@ -1,5 +1,3 @@
-export * from './adminAuth'
-export * from './auth'
 export * from './bodyParser'
 export * from './contentType'
 export * from './cors'

@@ -1,7 +1,6 @@
 import {
   ServerError,
-  NotFound,
-  Unauthorized
+  NotFound
 } from '@/adapters/errors'
 import { type IHTTPResponse } from '@/core'
 
@@ -22,16 +21,6 @@ export const created = (): IHTTPResponse => ({
 
 export const badRequest = (error: Error): IHTTPResponse => ({
   statusCode: 400,
-  body: error
-})
-
-export const unauthorized = (): IHTTPResponse => ({
-  statusCode: 401,
-  body: new Unauthorized()
-})
-
-export const forbidden = (error: Error): IHTTPResponse => ({
-  statusCode: 403,
   body: error
 })
 
