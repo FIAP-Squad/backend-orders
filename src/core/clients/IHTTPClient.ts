@@ -4,6 +4,7 @@ export interface IHTTPClientRequest {
   headers?: any
   params?: any
   data?: any
+  responseType?: any
 }
 
 export interface IHTTPClientResponse<T> {
@@ -16,6 +17,7 @@ export interface IHTTPClientResponse<T> {
 }
 
 export enum METHOD {
+  PATCH = 'patch',
   POST = 'post',
   PUT = 'put',
   GET = 'get',

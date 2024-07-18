@@ -33,8 +33,6 @@ model order {
   customer  String
   status    String
   amount    Int
-  items     orderItem[]
-  payment   payment?
 }
 
 model payment {
@@ -43,21 +41,7 @@ model payment {
   updatedAt DateTime @default(now()) @updatedAt
   amount    Int
   status    String
-  order     order    @relation(fields: [orderId], references: [id])
-  orderId   String   @unique
-}
-
-model orderItem {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
-  totalItems Int
-  unitPrice  Int
-  amount     Int
-  order      order    @relation(fields: [orderId], references: [id])
-  orderId    String
-  product    product  @relation(fields: [productId], references: [id])
-  productId  String
+  orderId   String @unique
 }
 
 model product {
@@ -69,13 +53,15 @@ model product {
   price       Int
   description String
   image       String
-  orderItem   orderItem[]
 }
 
-model errors {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  data      String   @db.LongText
-  date      DateTime
+model orderItem {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+  totalItems Int
+  unitPrice  Int
+  amount     Int
+  orderId    String
+  productId  String
 }
