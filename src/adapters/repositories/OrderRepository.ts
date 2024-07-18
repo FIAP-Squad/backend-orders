@@ -1,5 +1,5 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { OrderItem, type Order } from '@/domain'
+import { type OrderItem, type Order } from '@/domain'
 import {
   type IAddOrderRepository
 } from '@/core'
