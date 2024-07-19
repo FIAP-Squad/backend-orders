@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.prd
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/your-image-name:latest
 
