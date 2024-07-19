@@ -15,3 +15,5 @@ export type Order = {
   items: OrderItem[]
   payment: Payment
 }
+
+export type OrdersDTO = Omit<Order, 'payment'>
