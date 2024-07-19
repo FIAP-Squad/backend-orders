@@ -10,4 +10,4 @@ data:
   ORDERS: orders-service.orders.svc.cluster.local
   MONGODB_URL: mongodb+srv://gabrielvrfreire:y1jL4pgaBdEDJSth@cluster0.rhhrdat.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
   MONGODB_DATABASE: tech_challenge_logs
-  PORT: 5050
+  PORT: "5050"
