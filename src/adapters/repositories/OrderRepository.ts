@@ -2,10 +2,12 @@ import { prismaClient } from '@/adapters/repositories/prismaClient'
 import { type OrderItem, type OrdersDTO, type Order, type WithId } from '@/domain'
 import {
   type ILoadOrdersRepository,
-  type IAddOrderRepository
+  type IAddOrderRepository,
+  type IUpdateOrderRepository,
+  type UpdateOrderParamsRepository
 } from '@/core'
 
-export class OrderRepository implements IAddOrderRepository, ILoadOrdersRepository {
+export class OrderRepository implements IAddOrderRepository, ILoadOrdersRepository, IUpdateOrderRepository {
   async add (params: Order): Promise<string> {
     const { items, payment, ...order } = params
     const { id } = await prismaClient.order.create({
@@ -17,6 +19,11 @@ export class OrderRepository implements IAddOrderRepository, ILoadOrdersReposito
       }
     })
     return id
+  }
+
+  async update ({ id, body }: UpdateOrderParamsRepository): Promise<void> {
+    const { status } = body
+    await prismaClient.order.update({ where: { id }, data: { status } })
   }
 
   async loadAll (filter: any): Promise<Array<WithId<OrdersDTO>>> {
