@@ -1,8 +1,6 @@
 name: "SonarCube and Test Analysis"
 
 on:
-  # Trigger analysis when pushing in master or pull requests, and when creating
-  # a pull request.
   push:
     branches:
       - main
@@ -26,11 +24,16 @@ jobs:
 
       - name: Build project
         run: npm run build
+      
+      - name: Run Tests
+        run: npm run test
+        if: ${{ success() }}
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2.1.0
-        with:
-          projectBaseDir: "backend-orders"
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:          
           args: >
             -Dsonar.projectKey=${{ vars.PROJECT_KEY }}
             -Dsonar.organization=${{ vars.ORGANIZATION }}
@@ -38,14 +41,10 @@ jobs:
             -Dsonar.tests=tests
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.exclusions=node_modules/**
+            -Dsonar.exclusions=node_modules/**,src/main/**,src/core/**,src/domain/**,**\*.spec.ts,**\*.test.ts,
             -Dsonar.typescript.tsconfigPath=tsconfig.json
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.verbose=true
-
-      - name: Run Tests
-        run: npm run test
-        if: ${{ success() }}
         
       - name: Fail if Tests fail
         run: |

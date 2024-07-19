@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -27,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile.prd
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/your-image-name:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/backend-orders:latest
 
       - name: Logout from Docker Hub
         run: docker logout
