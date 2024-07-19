@@ -21,9 +21,9 @@ export class OrderRepository implements IAddOrderRepository, ILoadOrdersReposito
     return id
   }
 
-  async update (params: UpdateOrderParamsRepository): Promise<void> {
-    const { id, body } = params
-    await prismaClient.product.update({ where: { id }, data: { ...body } })
+  async update ({ id, body }: UpdateOrderParamsRepository): Promise<void> {
+    const { status } = body
+    await prismaClient.order.update({ where: { id }, data: { status } })
   }
 
   async loadAll (filter: any): Promise<Array<WithId<OrdersDTO>>> {
