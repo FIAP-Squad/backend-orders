@@ -25,7 +25,7 @@ RUN npm i
 COPY . .
 RUN npm run build
 RUN npx prisma generate
-ENV DATABASE_URL=mysql://root:root@payment_db:3306/payment_db
+ENV DATABASE_URL=mysql://root:root@db:3306/db
 RUN chmod +x ./start.sh
 # CMD ["node", "dist/main/server.js"]
 CMD ["./start.sh"]

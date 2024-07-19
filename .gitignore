@@ -1,0 +1,17 @@
+node_modules
+dist
+.env
+coverage
+data
+!src/data
+!tests/data
+.vscode
+globalConfig.json
+__status__
+todo
+.DS_Store
+*/.DS_Store
+tf/.terraform
+tf/.terraform.lock.hcl
+tf/terraform.tfstate
+tf/terraform.tfstate.backup
