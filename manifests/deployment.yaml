@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: orders-microservice
+  name: orders-microservice
+  namespace: orders
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-microservice
+  template:
+    metadata:
+      labels:
+        app: orders-microservice
+    spec:
+      containers:
+      - image: 43567/backend-orders:latest
+        name: orders-container
+        ports:
+        - containerPort: 5050
+        envFrom:
+        - configMapRef:
+            name: orders-configmap
+      imagePullSecrets:
+        - name: backend-registry-secret

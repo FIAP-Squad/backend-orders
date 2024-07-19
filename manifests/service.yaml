@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-service
+  namespace: orders
+spec:
+  selector:
+    app: orders-microservice
+  ports:
+    - port: 80
+      targetPort: 5050
+  type: LoadBalancer
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: payment-service-clusterip
+#   namespace: payment
+# spec:
+#   selector:
+#     app: payment-microservice
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 5050
+#   type: ClusterIP
