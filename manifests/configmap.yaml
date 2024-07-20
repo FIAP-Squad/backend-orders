@@ -5,9 +5,9 @@ metadata:
   namespace: orders
 data:
   DATABASE_URL: "mysql://root:a95c530a7af5f492a74499e70578d150@fiap-rds-api-db.cfukas4y451o.us-east-1.rds.amazonaws.com:3306/db"
-  PAYMENT: payment-service-internal.users.svc.cluster.local
-  PRODUCTS: products-service-internal.products.svc.cluster.local
-  ORDERS: orders-service-internal.orders.svc.cluster.local
-  MONGODB_URL: mongodb+srv://gabrielvrfreire:y1jL4pgaBdEDJSth@cluster0.rhhrdat.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-  MONGODB_DATABASE: tech_challenge_logs
+  PAYMENT: "http://payment-service-internal.users.svc.cluster.local/api/payment"
+  PRODUCTS: "http://products-service-internal.products.svc.cluster.local/api/products"
+  ORDERS: "http://orders-service-internal.orders.svc.cluster.local/api/orders"
+  MONGODB_URL: "mongodb+srv://gabrielvrfreire:y1jL4pgaBdEDJSth@cluster0.rhhrdat.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  MONGODB_DATABASE: "tech_challenge_logs"
   PORT: "5050"
