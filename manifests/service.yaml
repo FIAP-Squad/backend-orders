@@ -10,17 +10,17 @@ spec:
     - port: 80
       targetPort: 5050
   type: LoadBalancer
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: payment-service-clusterip
-#   namespace: payment
-# spec:
-#   selector:
-#     app: payment-microservice
-#   ports:
-#     - protocol: TCP
-#       port: 80
-#       targetPort: 5050
-#   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-service-internal
+  namespace: payment
+spec:
+  selector:
+    app: payment-microservice
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5050
+  type: ClusterIP
