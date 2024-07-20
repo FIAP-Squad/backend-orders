@@ -14,11 +14,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: payment-service-internal
-  namespace: payment
+  name: orders-service-internal
+  namespace: orders
 spec:
   selector:
-    app: payment-microservice
+    app: orders-microservice
   ports:
     - protocol: TCP
       port: 80
